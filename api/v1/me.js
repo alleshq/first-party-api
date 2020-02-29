@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
         about: req.user.about,
         plus: req.user.plus,
         createdAt: req.user.createdAt,
-        primaryId: req.user.primaryId
+        primaryId: req.user.primaryId,
+        followers: await req.user.countFollowers()
     });
 };
