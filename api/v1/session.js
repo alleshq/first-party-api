@@ -25,7 +25,8 @@ module.exports = async (req, res, next) => {
 
     //Response
     res.json({
-        id: session.user.id
+        session: session.id,
+        user: session.user.id
     });
 
 };
