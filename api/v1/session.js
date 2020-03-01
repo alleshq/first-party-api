@@ -18,15 +18,14 @@ module.exports = async (req, res, next) => {
     const session = await db.Session.findOne({
         where: {
             id: token.session
-        },
-        include: ["user"]
+        }
     });
     if (!session) return res.status(400).json({err: "invalidSession"});
 
     //Response
     res.json({
         session: session.id,
-        user: session.user.id
+        user: session.userId
     });
 
 };
