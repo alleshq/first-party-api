@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 module.exports = async (req, res, next) => {
 
     //Parse Header
-    const authToken = req.query.session;
+    const authToken = req.query.token;
     if (typeof authToken !== "string") return res.status(400).json({err: "invalidSession"});
     var token;
     try {
