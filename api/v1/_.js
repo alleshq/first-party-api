@@ -5,5 +5,6 @@ const router = express.Router();
 router.use(applicationAuth);
 router.get("/session", require("./session"));
 router.get("/user", require("./user"));
+router.get("/application", require("./application"));
 
 module.exports = router;

@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 	} else if (typeof req.query.username === "string") {
 		searchWithUsername = true;
 	} else {
-		return res.status(400).json({err: "invalidQueryParameters"});
+		return res.status(400).json({err: "invalidUser"});
 	}
 	const user = await db.User.findOne({
 		where: {

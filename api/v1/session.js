@@ -2,7 +2,7 @@ const db = require("../../util/db");
 const credentials = require("../../credentials");
 const jwt = require("jsonwebtoken");
 
-module.exports = async (req, res, next) => {
+module.exports = async (req, res) => {
 	//Parse Header
 	const authToken = req.query.token;
 	if (typeof authToken !== "string")
