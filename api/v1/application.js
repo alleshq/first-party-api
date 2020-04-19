@@ -38,14 +38,9 @@ module.exports = async (req, res) => {
 	const application = await db.Application.findOne({
 		where: {
 			id: applicationCredentials.id
-		},
-		include: ["team"]
+		}
 	});
 	if (!application) return res.status(400).json({err: "invalidApplication"});
-	if (!application.team)
-		return res.status(400).json({err: "invalidApplication"});
-	if (!application.team.developer)
-		return res.status(400).json({err: "invalidApplication"});
 	if (
 		applicationCredentials.secret &&
 		application.secret !== applicationCredentials.secret
@@ -59,12 +54,6 @@ module.exports = async (req, res) => {
 		description: application.description,
 		callbackUrls: application.callbackUrls,
 		firstParty: application.firstParty,
-		createdAt: application.createdAt,
-		team: {
-			id: application.team.id,
-			name: application.team.name,
-			slug: application.team.slug,
-			verified: application.team.verified
-		}
+		createdAt: application.createdAt
 	});
 };

@@ -20,9 +20,6 @@ module.exports = async (req, res, next) => {
 	const application = await token.getApplication();
 	const user = await token.getUser();
 	if (!application || !user) return res.status(401).json({err: "invalidToken"});
-	const team = await application.getTeam();
-	if (!team || !team.developer)
-		return res.status(401).json({err: "invalidToken"});
 
 	res.json({
 		access: token.access,
@@ -32,13 +29,7 @@ module.exports = async (req, res, next) => {
 			id: application.id,
 			name: application.name,
 			firstParty: application.firstParty,
-			createdAt: application.createdAt,
-			team: {
-				id: team.id,
-				name: team.name,
-				slug: team.slug,
-				verified: team.verified
-			}
+			createdAt: application.createdAt
 		}
 	});
 };
