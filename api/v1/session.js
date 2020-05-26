@@ -1,5 +1,4 @@
 const db = require("../../util/db");
-const credentials = require("../../credentials");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
