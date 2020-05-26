@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
 		return res.status(400).json({err: "invalidSession"});
 	var token;
 	try {
-		token = jwt.verify(authToken, credentials.jwtSecret);
+		token = jwt.verify(authToken, process.env.JWT_SECRET);
 	} catch (err) {
 		return res.status(400).json({err: "invalidSession"});
 	}
