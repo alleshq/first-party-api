@@ -6,3 +6,9 @@ services:
     restart: always
     ports:
       - 127.0.0.1:8006:8081
+    environment:
+      - DB_HOST=host
+      - DB_NAME=name
+      - DB_USERNAME=username
+      - DB_PASSWORD=password
+      - JWT_SECRET=jwtsecret
