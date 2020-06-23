@@ -22,6 +22,7 @@ module.exports = async (req, res, next) => {
 	if (!application || !user)
 		return res.status(400).json({err: "missingResource"});
 
+	// Response
 	res.json({
 		access: token.access,
 		scopes: token.scopes,

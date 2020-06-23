@@ -32,7 +32,7 @@ module.exports = async (req, res, next) => {
 		};
 	} else return res.status(401).json({err: "badAuthorization"});
 
-	//Get Application
+	// Get Application
 	const application = await db.Application.findOne({
 		where: {
 			id: applicationCredentials.id
@@ -43,6 +43,8 @@ module.exports = async (req, res, next) => {
 		return res.status(401).json({err: "badAuthorization"});
 	if (!application.firstParty)
 		return res.status(401).json({err: "applications.firstPartyOnly"});
+
+	// Next
 	req.application = application;
 	next();
 };

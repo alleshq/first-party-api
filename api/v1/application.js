@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
 		};
 	} else return res.status(400).json({err: "badRequest"});
 
-	//Get Application
+	// Get Application
 	const application = await db.Application.findOne({
 		where: {
 			id: applicationCredentials.id
@@ -47,6 +47,7 @@ module.exports = async (req, res) => {
 	)
 		return res.status(400).json({err: "missingResource"});
 
+	// Response
 	res.json({
 		id: application.id,
 		secret: application.secret,
