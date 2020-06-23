@@ -16,11 +16,11 @@ module.exports = async (req, res, next) => {
 		token.expired ||
 		token.createdAt < new Date().getTime() - config.tokenLifespan
 	)
-		return res.status(401).json({err: "missingResource"});
+		return res.status(400).json({err: "missingResource"});
 	const application = await token.getApplication();
 	const user = await token.getUser();
 	if (!application || !user)
-		return res.status(401).json({err: "missingResource"});
+		return res.status(400).json({err: "missingResource"});
 
 	res.json({
 		access: token.access,

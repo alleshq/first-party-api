@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
 			req.query.credentials.split(" ").length !== 2 ||
 			!req.query.credentials.startsWith("Basic ")
 		)
-			return res.status(401).json({err: "missingResource"});
+			return res.status(400).json({err: "missingResource"});
 		try {
 			credentialsString = Buffer.from(
 				req.query.credentials.split(" ")[1],
