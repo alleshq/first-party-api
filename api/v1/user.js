@@ -33,6 +33,7 @@ module.exports = async (req, res) => {
 		plus: user.plus,
 		createdAt: user.createdAt,
 		primaryId: user.primaryId,
-		followers: await user.countFollowers()
+		followers: await user.countFollowers(),
+		avatar: user.avatar
 	});
 };
