@@ -38,8 +38,7 @@ module.exports = async (req, res, next) => {
 			id: applicationCredentials.id
 		}
 	});
-	if (!application)
-		return res.status(401).json({err: "badAuthorization"});
+	if (!application) return res.status(401).json({err: "badAuthorization"});
 	if (application.secret !== applicationCredentials.secret)
 		return res.status(401).json({err: "badAuthorization"});
 	if (!application.firstParty)

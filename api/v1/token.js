@@ -19,7 +19,8 @@ module.exports = async (req, res, next) => {
 		return res.status(401).json({err: "missingResource"});
 	const application = await token.getApplication();
 	const user = await token.getUser();
-	if (!application || !user) return res.status(401).json({err: "missingResource"});
+	if (!application || !user)
+		return res.status(401).json({err: "missingResource"});
 
 	res.json({
 		access: token.access,
