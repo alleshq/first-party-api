@@ -9,8 +9,7 @@ db.sync().then(() => {
 });
 
 const bodyParser = require("body-parser");
-app.use(bodyParser.json({extended: false}));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json({}));
 
 app.use((err, req, res, next) => {
 	res.status(500).json({err: "internalError"});
