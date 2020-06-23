@@ -3,6 +3,7 @@ const applicationAuth = require("../../util/applicationAuth");
 
 const router = express.Router();
 router.use(applicationAuth);
+router.get("/accounts", require("./accounts"));
 router.get("/application", require("./application"));
 router.post("/plus", require("./plus.js"));
 router.get("/session", require("./session"));
