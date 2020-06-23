@@ -5,12 +5,12 @@ module.exports = async (req, res) => {
 	// Parse Header
 	const authToken = req.query.token;
 	if (typeof authToken !== "string")
-		return res.status(400).json({err: "invalidSession"});
+		return res.status(400).json({err: "badRequest"});
 	var token;
 	try {
 		token = jwt.verify(authToken, process.env.JWT_SECRET);
 	} catch (err) {
-		return res.status(400).json({err: "invalidSession"});
+		return res.status(400).json({err: "missingResource"});
 	}
 
 	// Get Session
@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
 			id: token.session
 		}
 	});
-	if (!session) return res.status(400).json({err: "invalidSession"});
+	if (!session) return res.status(400).json({err: "missingResource"});
 
 	// Response
 	res.json({

@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
 			req.query.credentials.split(" ").length !== 2 ||
 			!req.query.credentials.startsWith("Basic ")
 		)
-			return res.status(401).json({err: "invalidApplication"});
+			return res.status(401).json({err: "missingResource"});
 		try {
 			credentialsString = Buffer.from(
 				req.query.credentials.split(" ")[1],
@@ -18,10 +18,10 @@ module.exports = async (req, res) => {
 				.toString()
 				.split(":");
 		} catch (err) {
-			return res.status(400).json({err: "invalidApplication"});
+			return res.status(400).json({err: "missingResource"});
 		}
 		if (credentialsString.length !== 2)
-			return res.status(400).json({err: "invalidApplication"});
+			return res.status(400).json({err: "missingResource"});
 
 		applicationCredentials = {
 			id: credentialsString[0],
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
 			id: req.query.id,
 			secret: typeof req.query.secret === "string" ? req.query.secret : null
 		};
-	} else return res.status(400).json({err: "invalidApplication"});
+	} else return res.status(400).json({err: "badRequest"});
 
 	//Get Application
 	const application = await db.Application.findOne({
@@ -40,12 +40,12 @@ module.exports = async (req, res) => {
 			id: applicationCredentials.id
 		}
 	});
-	if (!application) return res.status(400).json({err: "invalidApplication"});
+	if (!application) return res.status(400).json({err: "missingResource"});
 	if (
 		applicationCredentials.secret &&
 		application.secret !== applicationCredentials.secret
 	)
-		return res.status(401).json({err: "incorrectSecret"});
+		return res.status(400).json({err: "missingResource"});
 
 	res.json({
 		id: application.id,

@@ -39,11 +39,11 @@ module.exports = async (req, res, next) => {
 		}
 	});
 	if (!application)
-		return res.status(401).json({err: "invalidApplicationCredentials"});
+		return res.status(401).json({err: "badAuthorization"});
 	if (application.secret !== applicationCredentials.secret)
-		return res.status(401).json({err: "invalidApplicationCredentials"});
+		return res.status(401).json({err: "badAuthorization"});
 	if (!application.firstParty)
-		return res.status(401).json({err: "thirdPartyApplication"});
+		return res.status(401).json({err: "applications.firstPartyOnly"});
 	req.application = application;
 	next();
 };

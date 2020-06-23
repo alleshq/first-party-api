@@ -3,7 +3,7 @@ const config = require("../../config");
 
 module.exports = async (req, res, next) => {
 	if (typeof req.query.token !== "string")
-		return res.status(400).json({err: "invalidToken"});
+		return res.status(400).json({err: "badRequest"});
 
 	// Get Token
 	const token = await db.AuthToken.findOne({
@@ -16,10 +16,10 @@ module.exports = async (req, res, next) => {
 		token.expired ||
 		token.createdAt < new Date().getTime() - config.tokenLifespan
 	)
-		return res.status(401).json({err: "invalidToken"});
+		return res.status(401).json({err: "missingResource"});
 	const application = await token.getApplication();
 	const user = await token.getUser();
-	if (!application || !user) return res.status(401).json({err: "invalidToken"});
+	if (!application || !user) return res.status(401).json({err: "missingResource"});
 
 	res.json({
 		access: token.access,
