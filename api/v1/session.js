@@ -2,7 +2,7 @@ const db = require("../../util/db");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
-	//Parse Header
+	// Parse Header
 	const authToken = req.query.token;
 	if (typeof authToken !== "string")
 		return res.status(400).json({err: "invalidSession"});
@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
 		return res.status(400).json({err: "invalidSession"});
 	}
 
-	//Get Session
+	// Get Session
 	const session = await db.Session.findOne({
 		where: {
 			id: token.session
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
 	});
 	if (!session) return res.status(400).json({err: "invalidSession"});
 
-	//Response
+	// Response
 	res.json({
 		session: session.id,
 		user: session.userId

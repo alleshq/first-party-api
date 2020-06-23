@@ -1,7 +1,7 @@
 const db = require("../../util/db");
 
 module.exports = async (req, res) => {
-	//Get Credentials
+	// Get Credentials
 	var applicationCredentials;
 	if (typeof req.query.credentials === "string") {
 		var credentialsString;

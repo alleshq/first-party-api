@@ -1,7 +1,7 @@
 const db = require("./db");
 
 module.exports = async (req, res, next) => {
-	//Get Credentials
+	// Get Credentials
 	var applicationCredentials;
 	const authHeader = req.headers.authorization;
 	if (typeof authHeader === "string") {

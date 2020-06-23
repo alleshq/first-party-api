@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
 	});
 	if (!user) return res.status(400).json({err: "invalidUser"});
 
-	//Response
+	// Response
 	res.json({
 		id: user.id,
 		username: user.username,

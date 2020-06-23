@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
 	if (typeof req.query.token !== "string")
 		return res.status(400).json({err: "invalidToken"});
 
-	//Get Token
+	// Get Token
 	const token = await db.AuthToken.findOne({
 		where: {
 			access: req.query.token

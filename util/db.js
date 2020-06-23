@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const models = require("@alleshq/coredb-models");
 
-//Create Instance
+// Create Instance
 const sequelize = new Sequelize(
 	process.env.DB_NAME,
 	process.env.DB_USERNAME,
