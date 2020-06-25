@@ -13,6 +13,29 @@ module.exports = async (req, res) => {
 	});
 	if (!user) return res.status(400).json({err: "missingResource"});
 
+	// Get Content Score
+	let score = 0;
+	try {
+		score = (
+			await axios.post(
+				"https://content-score.alles.cx",
+				{
+					content
+				},
+				{
+					headers: {
+						authorization: process.env.CONTENT_SCORE
+					}
+				}
+			)
+		).data;
+	} catch (err) {}
+
+	// Update user reputation
+	await user.update({
+		reputation: literal(`reputation + ${score}`)
+	});
+
 	// Create Post
 	const post = await db.Post.create({
 		id: uuid(),
