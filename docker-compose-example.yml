@@ -11,4 +11,4 @@ services:
       - DB_NAME=name
       - DB_USERNAME=username
       - DB_PASSWORD=password
-      - JWT_SECRET=jwtsecret
+      - SESSION_JWT=jwtsecret

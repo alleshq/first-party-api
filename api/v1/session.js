@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 		return res.status(400).json({err: "badRequest"});
 	var token;
 	try {
-		token = jwt.verify(authToken, process.env.JWT_SECRET);
+		token = jwt.verify(authToken, process.env.SESSION_JWT);
 	} catch (err) {
 		return res.status(400).json({err: "missingResource"});
 	}
