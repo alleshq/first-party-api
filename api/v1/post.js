@@ -1,5 +1,6 @@
 const db = require("../../util/db");
 const uuid = require("uuid").v4;
+const {literal} = require("sequelize");
 
 module.exports = async (req, res) => {
 	if (typeof req.query.id !== "string" || typeof req.body.content !== "string")
