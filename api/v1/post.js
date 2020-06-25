@@ -2,7 +2,7 @@ const db = require("../../util/db");
 const uuid = require("uuid").v4;
 
 module.exports = async (req, res) => {
-	if (typeof req.query.id !== "string" || typeof req.body.content !== "boolean")
+	if (typeof req.query.id !== "string" || typeof req.body.content !== "string")
 		return res.status(400).json({err: "badRequest"});
 
 	// Get User
