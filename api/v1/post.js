@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
 			await axios.post(
 				"https://content-score.alles.cx",
 				{
-					content
+					content: req.body.content
 				},
 				{
 					headers: {
